@@ -37,9 +37,38 @@ class Chip8System(object):
     def __setitem__(self, key, value): raise NotImplementedError
     def __getitem__(self, item): raise NotImplementedError
 
-    def game_loop(self): raise NotImplementedError
+    def initialize(self):
 
-def main(): raise NotImplementedError
+        self.__PC     = 0x200  # Program counter starts at 0x200
+        self.__opcode = 0      # Reset current opcode
+        self.__I      = 0      # Reset index register
+        self.__sp     = 0      # Reset stack pointer
+
+        # Clear display
+        # Clear stack
+        # Clear registers V0-VF
+        # Clear memory
+
+        # Load fontset
+        chip8_fontset = self.get_chip8_fontset()
+        for i in xrange(1,80):
+            self.__memory[i] = chip8_fontset[i]
+
+        # Reset timers
+
+    def emulate_cycle(self):
+        while 1: pass
+        # Fetch Opcode
+        # Decode Opcode
+        # Execute Opcode
+        # Update timers
+
+    def get_chip8_fontset(self): raise NotImplementedError
+
+def main():
+    system = Chip8System()
+    system.initialize()
+    system.emulate_cycle()
 
 if __name__ == '__main__':
     main()
